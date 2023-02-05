@@ -35,7 +35,14 @@
   },
   "license": "Apache-2.0",
   "keywords": [
-    "docker"
+    "docker",
+    "sandbox",
+    "secure sandbox",
+    "container",
+    "safe",
+    "vm",
+    "isolate",
+    "malicious"
   ],
   "homepage": "https://github.com/lirantal/create-node-sandbox",
   "bugs": {
