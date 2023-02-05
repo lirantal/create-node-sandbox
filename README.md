@@ -21,22 +21,11 @@
 
 Spin-off an isolated Node.js environment using Docker containers
 
-# Install
-
-```bash
-npm add create-node-sandbox
-```
-
 # Usage
 
-```js
-// @TODO
-const {} = require('create-node-sandbox')
+```bash
+npx create-node-sandbox
 ```
-
-# Example
-
-<!-- TODO -->
 
 # Contributing
 

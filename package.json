@@ -100,7 +100,7 @@
     ]
   },
   "lint-staged": {
-    "**/*.js": [
+    "**/*.{js,json}": [
       "npm run format"
     ]
   },
