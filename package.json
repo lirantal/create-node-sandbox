@@ -2,7 +2,6 @@
   "name": "create-node-sandbox",
   "version": "0.0.0-development",
   "description": "Spin-off an isolated Node.js environment using Docker containers",
-  "main": "main.js",
   "bin": {
     "cli": "bin/cli.js"
   },
