@@ -20,7 +20,7 @@
     "lint": "eslint . && npm run lint:lockfile",
     "lint:fix": "eslint . --fix",
     "format": "prettier --config .prettierrc.json --write '**/*.js'",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test": "vitest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
     "semantic-release": "npx semantic-release",
@@ -51,7 +51,6 @@
     "type": "git",
     "url": "https://github.com/lirantal/create-node-sandbox.git"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.19.1",
@@ -74,7 +73,8 @@
     "lint-staged": "^13.1.0",
     "lockfile-lint": "^4.10.0",
     "open-cli": "^7.1.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "vitest": "^0.28.4"
   },
   "jest": {
     "testEnvironment": "node",
