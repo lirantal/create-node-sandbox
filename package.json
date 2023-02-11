@@ -21,7 +21,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --config .prettierrc.json --write '**/*.js'",
     "test": "vitest",
-    "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch",
+    "test:once": "vitest run",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
     "semantic-release": "npx semantic-release",
     "prepare": "husky install && chmod 755 .husky/*",
@@ -108,7 +108,7 @@
     "hooks": {
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
-      "pre-push": "npm run lint && npm run test",
+      "pre-push": "npm run lint && npm run test:once",
       "post-commit": "git status",
       "post-checkout": "git status",
       "post-merge": "npm install"
