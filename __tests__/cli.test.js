@@ -14,5 +14,35 @@ describe('CLI should call spawn and execute the docker binary', () => {
     main()
 
     expect(spawn).toBeCalledTimes(1)
+    const haveBeenCalledWith = spawn.mock.calls[0]
+    expect(haveBeenCalledWith[0]).toBe('docker')
+  })
+
+  it('calls the docker binary along with optional arguments', () => {
+    main()
+
+    expect(spawn).toBeCalledTimes(1)
+    const haveBeenCalledWith = spawn.mock.calls[0]
+    expect(haveBeenCalledWith[1]).toEqual([
+      'run',
+      '--rm',
+      '-it',
+      '--security-opt',
+      'no-new-privileges',
+      '--entrypoint',
+      'bash',
+      'node:18-bullseye-slim'
+    ])
+  })
+
+  it('spins off the sandbox environment without exposing environment variables', () => {
+    main()
+
+    expect(spawn).toBeCalledTimes(1)
+    const haveBeenCalledWith = spawn.mock.calls[0]
+    expect(haveBeenCalledWith[2]).toEqual({
+      stdio: 'inherit',
+      env: { PATH: process.env.PATH }
+    })
   })
 })
