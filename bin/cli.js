@@ -5,7 +5,7 @@ import { env } from 'node:process'
 
 const allowedEnvVars = { PATH: env.PATH }
 
-spawn('docker', ['run', '-it', '--entrypoint', 'bash', 'node:18-bullseye-slim'], {
+spawn('docker', ['run', '--rm', '-it', '--entrypoint', 'bash', 'node:18-bullseye-slim'], {
   stdio: 'inherit',
   env: allowedEnvVars
 })
