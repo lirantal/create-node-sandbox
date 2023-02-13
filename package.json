@@ -27,8 +27,8 @@
     "dist/"
   ],
   "scripts": {
-    "lint": "eslint . && npm run lint:lockfile",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --ext .js,.ts && npm run lint:lockfile",
+    "lint:fix": "eslint . --ext .js,.ts  --fix",
     "build": "npm run build:clean && npm run build:esm && npm run build:cjs",
     "build:clean": "rm -rf dist",
     "build:esm": "tsc -p ./tsconfig.esm.json && chmod 755 dist/esm/bin/cli.js",
@@ -75,8 +75,10 @@
     "@semantic-release/github": "^8.0.7",
     "@semantic-release/npm": "^9.0.2",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "@vitest/coverage-c8": "^0.28.4",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-security": "^1.7.1",
     "husky": "^8.0.3",
@@ -109,10 +111,13 @@
   },
   "eslintIgnore": [
     "coverage/**",
-    "dist/**"
+    "dist/**",
+    "__tests__/**",
+    "src/bin/cli.ts"
   ],
   "eslintConfig": {
     "plugins": [
+      "@typescript-eslint",
       "node",
       "security"
     ],
@@ -120,6 +125,11 @@
       "plugin:node/recommended"
     ],
     "rules": {
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/consistent-type-definitions": [
+        "error",
+        "type"
+      ],
       "node/no-unsupported-features/es-syntax": [
         "error",
         {
@@ -130,6 +140,7 @@
         }
       ],
       "no-process-exit": "warn",
+      "node/no-missing-import": "off",
       "node/no-unsupported-features": "off",
       "node/no-unpublished-require": "off",
       "security/detect-non-literal-fs-filename": "error",
@@ -146,11 +157,17 @@
       "space-before-function-paren": "off",
       "object-curly-spacing": "off"
     },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "sourceType": "module",
+      "ecmaVersion": 12,
       "ecmaFeatures": {
         "impliedStrict": true
       }
+    },
+    "env": {
+      "node": true,
+      "es6": true
     }
   },
   "release": {
