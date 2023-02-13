@@ -29,7 +29,8 @@
   "scripts": {
     "lint": "eslint . && npm run lint:lockfile",
     "lint:fix": "eslint . --fix",
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:clean && npm run build:esm && npm run build:cjs",
+    "build:clean": "rm -rf dist",
     "build:esm": "tsc -p ./tsconfig.esm.json && chmod 755 dist/esm/bin/cli.js",
     "build:cjs": "tsc -p ./tsconfig.cjs.json && mv dist/cjs/bin/cli.js dist/cjs/bin/cli.cjs && chmod 755 dist/cjs/bin/cli.cjs",
     "format": "prettier --config .prettierrc.json --write '**/*.{js,ts,json}'",
