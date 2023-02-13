@@ -111,3 +111,6 @@ typings/
 
 # Visual Studio Code
 .vscode/
+
+# ignore the compiled dist/ folder for TypeScript
+dist/

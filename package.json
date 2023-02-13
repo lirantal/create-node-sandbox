@@ -3,27 +3,41 @@
   "version": "0.0.0-development",
   "description": "Spin-off an isolated Node.js environment using Docker containers",
   "bin": {
-    "cli": "bin/cli.js"
+    "cli": "dist/cjs/bin/cli.cjs"
   },
+  "main": "dist/cjs/main.cjs",
+  "module": "dist/esm/main.mjs",
   "exports": {
-    ".": "./src/main.js"
+    ".": {
+      "import": {
+        "types": "./dist/esm/types/index.d.ts",
+        "default": "./dist/esm/main.js"
+      },
+      "require": {
+        "types": "./dist/cjs/types/index.d.ts",
+        "default": "./dist/cjs/main.cjs"
+      }
+    }
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "type": "module",
   "files": [
     "src",
-    "bin"
+    "dist/"
   ],
   "scripts": {
     "lint": "eslint . && npm run lint:lockfile",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --config .prettierrc.json --write '**/*.js'",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./tsconfig.esm.json && chmod 755 dist/esm/bin/cli.js",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json && mv dist/cjs/bin/cli.js dist/cjs/bin/cli.cjs && chmod 755 dist/cjs/bin/cli.cjs",
+    "format": "prettier --config .prettierrc.json --write '**/*.{js,ts,json}'",
     "test": "vitest --coverage",
     "test:once": "vitest run",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
     "semantic-release": "npx semantic-release",
+    "prepack": "npm run build",
     "prepare": "husky install && chmod 755 .husky/*",
     "lint:lockfile": "lockfile-lint --path package-lock.json --validate-https --allowed-hosts npm yarn"
   },
