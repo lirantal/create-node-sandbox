@@ -122,7 +122,9 @@
       "security"
     ],
     "extends": [
-      "plugin:node/recommended"
+      "plugin:node/recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
       "@typescript-eslint/no-unused-vars": "error",
