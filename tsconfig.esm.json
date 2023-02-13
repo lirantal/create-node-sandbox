@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "types": ["node"],
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/esm/types"
+  }
+}
