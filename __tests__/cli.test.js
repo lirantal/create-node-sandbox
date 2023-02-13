@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { spawn } from 'node:child_process'
-import { main } from '../src/main.js'
+import { main } from '../src/main.ts'
 
 vi.mock('node:child_process')
 
