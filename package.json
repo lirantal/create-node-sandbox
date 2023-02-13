@@ -109,7 +109,8 @@
   },
   "eslintIgnore": [
     "coverage/**",
-    "dist/**"
+    "dist/**",
+    "__tests__/**"
   ],
   "eslintConfig": {
     "plugins": [
