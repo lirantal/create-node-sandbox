@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-import Gradient from 'gradient-string'
 import cfonts from 'cfonts'
-
 import { main } from '../main'
 
 cfonts.say('Node.js|sandbox!', {
@@ -19,5 +17,11 @@ cfonts.say('Node.js|sandbox!', {
   transitionGradient: true, // define if this is a transition between colors directly
   env: 'node' // define the environment cfonts is being executed in
 })
+
+console.log('Welcome, dear human.')
+console.log('')
+console.log('This is a Node.js contained-hosted environment.')
+console.log('It is meant to be used for testing in isolation purposes')
+console.log('however, note that it is not a bullet-proof secured sandbox.')
 
 main()
