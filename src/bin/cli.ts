@@ -22,6 +22,6 @@ console.log('Welcome, dear human.')
 console.log('')
 console.log('This is a Node.js contained-hosted environment.')
 console.log('It is meant to be used for testing in isolation purposes')
-console.log('however, note that it is not a bullet-proof secured sandbox.')
+console.log('however, note that \u001b[41;1mthis is not a secured sandbox\u001b[0m.')
 
 main()
