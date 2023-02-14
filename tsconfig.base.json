@@ -10,5 +10,6 @@
     "declarationMap": true,
     "allowSyntheticDefaultImports": true
   },
+  "include": ["./typings"],
   "files": ["./src/main.ts", "./src/bin/cli.ts"]
 }
