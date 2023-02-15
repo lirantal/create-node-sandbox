@@ -30,7 +30,7 @@ function printWelcomeMessage() {
 }
 
 async function init() {
-  const dockerExecutableName = 'docker'
+  const dockerExecutableName: string = 'docker'
   try {
     await doesDockerExist(dockerExecutableName)
   } catch (error) {
