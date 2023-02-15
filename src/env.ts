@@ -6,7 +6,7 @@ import type { Stats } from 'node:fs'
 
 const execFile = promisify(childProcesses.execFile)
 
-export async function doesDockerExist(executable: string) {
+export async function doesDockerExist(executable: string): Promise<void> {
   const path = process.env.PATH
   const allPaths = path?.split(':')
 
@@ -21,11 +21,14 @@ export async function doesDockerExist(executable: string) {
   }
 }
 
-export function isDockerRunning(executable: string) {
+export function isDockerRunning(executable: string): Promise<{ stdout: string; stderr: string }> {
   return execFile(executable, ['ps'])
 }
 
-export function isDockerImageAvailable(executable: string, dockerImageName: string) {
+export function isDockerImageAvailable(
+  executable: string,
+  dockerImageName: string
+): Promise<{ stdout: string; stderr: string }> {
   return execFile(executable, ['image', 'inspect', dockerImageName])
 }
 
