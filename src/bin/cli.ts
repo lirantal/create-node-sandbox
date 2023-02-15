@@ -2,6 +2,7 @@
 
 import cfonts from 'cfonts'
 import { main } from '../main'
+import { doesDockerExist } from '../env'
 
 cfonts.say('Node.js|sandbox!', {
   font: 'block', // define the font face
@@ -28,5 +29,17 @@ function printWelcomeMessage() {
   console.log('')
 }
 
-printWelcomeMessage()
-main()
+async function init() {
+  try {
+    const dockerExecutableName = 'docker'
+    await doesDockerExist(dockerExecutableName)
+  } catch (error) {
+    console.log('error: unable to detect Docker in path. Is it installed?')
+    process.exit(1)
+  }
+
+  printWelcomeMessage()
+  main()
+}
+
+init()
