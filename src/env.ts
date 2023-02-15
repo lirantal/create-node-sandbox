@@ -10,8 +10,7 @@ export async function doesDockerExist(executable: string) {
       return isExecutableInPath(systemPath, executable)
     })
 
-    const res = await Promise.any(listExecutableFinder)
-    console.log(res)
+    await Promise.any(listExecutableFinder)
   } else {
     throw 'Error: no paths defined in environment'
   }
