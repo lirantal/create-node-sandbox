@@ -3,6 +3,8 @@ import { promisify } from 'node:util'
 import { stat } from 'node:fs/promises'
 import { join as pathJoin } from 'node:path'
 
+const execFile = promisify(childProcesses.execFile)
+
 export async function doesDockerExist(executable: string) {
   const path = process.env.PATH
   const allPaths = path?.split(':')
@@ -19,9 +21,11 @@ export async function doesDockerExist(executable: string) {
 }
 
 export async function isDockerRunning(executable: string) {
-  const execFile = promisify(childProcesses.execFile)
-
   await execFile(executable, ['ps'])
+}
+
+export async function isDockerImageAvailable(executable: string, dockerImageName: string) {
+  await execFile(executable, ['image', 'inspect', dockerImageName])
 }
 
 async function isExecutableInPath(systemPath: string, executable: string) {

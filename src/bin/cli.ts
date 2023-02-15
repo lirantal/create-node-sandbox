@@ -2,7 +2,7 @@
 
 import cfonts from 'cfonts'
 import { main } from '../main'
-import { doesDockerExist, isDockerRunning } from '../env'
+import { doesDockerExist, isDockerImageAvailable, isDockerRunning } from '../env'
 
 cfonts.say('Node.js|sandbox!', {
   font: 'block', // define the font face
@@ -42,6 +42,15 @@ async function init() {
     await isDockerRunning(dockerExecutableName)
   } catch (error) {
     console.log('error: unable to query the Docker daemon. Is it running?')
+    process.exit(1)
+  }
+
+  try {
+    await isDockerImageAvailable(dockerExecutableName, 'node:18-bullseye-slim')
+  } catch (error) {
+    console.log(
+      'error: unable to find a local copy of the Node.js container image. Have you pulled it?'
+    )
     process.exit(1)
   }
 
