@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
+    "lib": ["ES2021", "ESNext"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
