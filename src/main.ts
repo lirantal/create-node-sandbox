@@ -6,21 +6,16 @@ export function main(sandboxOptions: { image: string; resumable: string }) {
 
   const { image, resumable } = sandboxOptions
 
-  spawn(
-    'docker',
-    [
-      'run',
-      '--rm',
-      '-it',
-      '--security-opt',
-      'no-new-privileges',
-      '--entrypoint',
-      'bash',
-      image ? image : 'node:18-bullseye-slim'
-    ],
-    {
-      stdio: 'inherit',
-      env: allowedEnvVars
-    }
-  )
+  const dockerSpawnArguments: string[] = []
+  dockerSpawnArguments.push('run')
+  !resumable ? dockerSpawnArguments.push('--rm') : null
+  dockerSpawnArguments.push('-it')
+  dockerSpawnArguments.push('--security-opt', 'no-new-privileges')
+  dockerSpawnArguments.push('--entrypoint', 'bash')
+  image ? dockerSpawnArguments.push(image) : 'node:18-bullseye-slim'
+
+  spawn('docker', dockerSpawnArguments, {
+    stdio: 'inherit',
+    env: allowedEnvVars
+  })
 }
