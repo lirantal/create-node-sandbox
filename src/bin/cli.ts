@@ -2,6 +2,8 @@
 
 import cfonts from 'cfonts'
 import { main } from '../main'
+import parser from 'yargs-parser'
+
 import { doesDockerExist, isDockerImageAvailable, isDockerRunning } from '../env'
 
 cfonts.say('Node.js|sandbox!', {
@@ -31,6 +33,9 @@ function printWelcomeMessage() {
 
 async function init() {
   const dockerExecutableName: string = 'docker'
+
+  parseCliArgs()
+
   try {
     await doesDockerExist(dockerExecutableName)
   } catch (error) {
@@ -56,6 +61,11 @@ async function init() {
 
   printWelcomeMessage()
   main()
+}
+
+function parseCliArgs() {
+  const cliArguments = parser(process.argv.slice(2))
+  return cliArguments
 }
 
 init()
