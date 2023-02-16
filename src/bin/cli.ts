@@ -34,7 +34,7 @@ function printWelcomeMessage() {
 async function init() {
   const dockerExecutableName: string = 'docker'
 
-  parseCliArgs()
+  const sandboxOptions = parseCliArgs()
 
   try {
     await doesDockerExist(dockerExecutableName)
@@ -60,11 +60,14 @@ async function init() {
   }
 
   printWelcomeMessage()
-  main()
+  main({ image: sandboxOptions.image, resumable: sandboxOptions.resumable })
 }
 
 function parseCliArgs() {
-  const cliArguments = parser(process.argv.slice(2))
+  const cliArguments = parser(process.argv.slice(2), {
+    string: ['image'],
+    boolean: ['resumable']
+  })
   return cliArguments
 }
 

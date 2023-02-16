@@ -1,8 +1,10 @@
 import { spawn } from 'node:child_process'
 import { env } from 'node:process'
 
-export function main() {
+export function main(sandboxOptions: { image: string; resumable: string }) {
   const allowedEnvVars = { PATH: env.PATH }
+
+  const { image, resumable } = sandboxOptions
 
   spawn(
     'docker',
@@ -14,7 +16,7 @@ export function main() {
       'no-new-privileges',
       '--entrypoint',
       'bash',
-      'node:18-bullseye-slim'
+      image ? image : 'node:18-bullseye-slim'
     ],
     {
       stdio: 'inherit',
