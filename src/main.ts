@@ -12,7 +12,7 @@ export function main(sandboxOptions: { image: string; resumable: boolean }) {
   dockerSpawnArguments.push('-it')
   dockerSpawnArguments.push('--security-opt', 'no-new-privileges')
   dockerSpawnArguments.push('--entrypoint', 'bash')
-  image ? dockerSpawnArguments.push(image) : 'node:18-bullseye-slim'
+  !!image ? dockerSpawnArguments.push(image) : dockerSpawnArguments.push('node:18-bullseye-slim')
 
   spawn('docker', dockerSpawnArguments, {
     stdio: 'inherit',

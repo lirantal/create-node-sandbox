@@ -11,7 +11,7 @@ afterEach(() => {
 
 describe('CLI should call spawn and execute the docker binary', () => {
   it('calls the docker binary to create a sandbox', () => {
-    main()
+    main({})
 
     expect(spawn).toBeCalledTimes(1)
     const haveBeenCalledWith = spawn.mock.calls[0]
@@ -19,7 +19,7 @@ describe('CLI should call spawn and execute the docker binary', () => {
   })
 
   it('calls the docker binary along with optional arguments', () => {
-    main()
+    main({})
 
     expect(spawn).toBeCalledTimes(1)
     const haveBeenCalledWith = spawn.mock.calls[0]
@@ -36,7 +36,7 @@ describe('CLI should call spawn and execute the docker binary', () => {
   })
 
   it('spins off the sandbox environment without exposing environment variables', () => {
-    main()
+    main({})
 
     expect(spawn).toBeCalledTimes(1)
     const haveBeenCalledWith = spawn.mock.calls[0]
