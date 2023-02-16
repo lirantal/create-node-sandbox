@@ -42,4 +42,21 @@ describe('CLI should parse and use command line arguments and map them correctly
       'node:18-bullseye-slim'
     ])
   })
+
+  it('users who specify both a node image and a node version will learn that image takes precedents', () => {
+    main({ node: '16', image: 'node:14-bullseye' })
+
+    expect(spawn).toBeCalledTimes(1)
+    const haveBeenCalledWith = spawn.mock.calls[0]
+    expect(haveBeenCalledWith[1]).toEqual([
+      'run',
+      '--rm',
+      '-it',
+      '--security-opt',
+      'no-new-privileges',
+      '--entrypoint',
+      'bash',
+      'node:14-bullseye'
+    ])
+  })
 })
