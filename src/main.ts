@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process'
 import { env } from 'node:process'
 
-export function main(sandboxOptions: { image: string; resumable: string }) {
+export function main(sandboxOptions: { image: string; resumable: boolean }) {
   const allowedEnvVars = { PATH: env.PATH }
 
   const { image, resumable } = sandboxOptions
