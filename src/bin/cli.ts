@@ -60,12 +60,16 @@ async function init() {
   }
 
   printWelcomeMessage()
-  main({ image: sandboxOptions.image, resumable: sandboxOptions.resumable })
+  main({
+    image: sandboxOptions.image,
+    node: sandboxOptions.node,
+    resumable: sandboxOptions.resumable
+  })
 }
 
 function parseCliArgs() {
   const cliArguments = parser(process.argv.slice(2), {
-    string: ['image'],
+    string: ['image', 'node'],
     boolean: ['resumable']
   })
   return cliArguments
