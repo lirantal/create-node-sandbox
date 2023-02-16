@@ -26,4 +26,20 @@ describe('CLI should parse and use command line arguments and map them correctly
       'node:1.0'
     ])
   })
+
+  it('users can specify that the container wont get deleted', () => {
+    main({ resumable: true })
+
+    expect(spawn).toBeCalledTimes(1)
+    const haveBeenCalledWith = spawn.mock.calls[0]
+    expect(haveBeenCalledWith[1]).toEqual([
+      'run',
+      '-it',
+      '--security-opt',
+      'no-new-privileges',
+      '--entrypoint',
+      'bash',
+      'node:18-bullseye-slim'
+    ])
+  })
 })
