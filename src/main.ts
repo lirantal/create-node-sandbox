@@ -1,8 +1,8 @@
 import { spawn } from 'node:child_process'
 import { env } from 'node:process'
 
-const DEFAULT_NODE_VERSION: string = '18'
-const DEFAULT_NODE_IMAGE_TAG: string = 'bullseye-slim'
+const DEFAULT_NODE_VERSION = '18'
+const DEFAULT_NODE_IMAGE_TAG = 'bullseye-slim'
 
 function getNodeDockerImage(
   nodeVersion: string | null = null,
