@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process'
+import child_process from 'node:child_process'
 import { env } from 'node:process'
 
 const DEFAULT_NODE_VERSION = '18'
@@ -39,7 +39,7 @@ export function main(sandboxOptions: { image: string; node: string; resumable: b
 
   dockerSpawnArguments.push(nodeContainerImage)
 
-  spawn('docker', dockerSpawnArguments, {
+  child_process.spawn('docker', dockerSpawnArguments, {
     stdio: 'inherit',
     env: allowedEnvVars
   })
