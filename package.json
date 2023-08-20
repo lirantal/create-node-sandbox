@@ -34,8 +34,8 @@
     "build:esm": "tsc -p ./tsconfig.esm.json && chmod 755 dist/esm/bin/cli.js",
     "build:cjs": "tsc -p ./tsconfig.cjs.json && mv dist/cjs/bin/cli.js dist/cjs/bin/cli.cjs && chmod 755 dist/cjs/bin/cli.cjs",
     "format": "prettier --config .prettierrc.json --write '**/*.{js,ts,json}'",
-    "test": "vitest --coverage",
-    "test:once": "vitest run",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest --coverage",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
     "semantic-release": "npx semantic-release",
     "prepack": "npm run build",
@@ -99,7 +99,7 @@
     "hooks": {
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
-      "pre-push": "npm run lint && npm run test:once",
+      "pre-push": "npm run lint && npm run test",
       "post-commit": "git status",
       "post-checkout": "git status",
       "post-merge": "npm install"
