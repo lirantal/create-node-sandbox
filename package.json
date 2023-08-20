@@ -173,6 +173,10 @@
       "es6": true
     }
   },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
   "release": {
     "branches": [
       "main",
