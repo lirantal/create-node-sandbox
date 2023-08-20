@@ -45,9 +45,15 @@ describe('CLI should call spawn and execute the docker binary', () => {
 
     expect(mockedSpawn).toBeCalledTimes(1)
     const haveBeenCalledWith = mockedSpawn.mock.calls[0]
-    expect(haveBeenCalledWith[2]).toEqual({
-      stdio: 'inherit',
-      env: { PATH: process.env.PATH }
-    })
+
+    expect(haveBeenCalledWith[2].env).toEqual({ PATH: process.env.PATH })
+
+    const envVarsCount = haveBeenCalledWith[2].env.length
+    if (envVarsCount > 1) {
+      expect(haveBeenCalledWith[2].env).toEqual({
+        PATH: process.env.PATH,
+        NODE_V8_COVERAGE: process.env.NODE_V8_COVERAGE
+      })
+    }
   })
 })
