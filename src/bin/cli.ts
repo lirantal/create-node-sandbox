@@ -24,8 +24,10 @@ cfonts.say('Node.js|sandbox!', {
 function printWelcomeMessage() {
   console.log('Welcome, dear human.')
   console.log('')
-  console.log('This is a Node.js contained-hosted environment to be used for testing purposes')
-  console.log('\u001b[41;1mAttention: this is not a secured sandbox\u001b[0m.')
+  console.log('This is an isolated Node.js environment to be used as a sandbox')
+  console.log('based on container technology.')
+  console.log('')
+  console.log('\u001b[41;1mremember: nothing is ever truly secured.\u001b[0m')
   console.log('')
   console.log('Hack away!')
   console.log('')
