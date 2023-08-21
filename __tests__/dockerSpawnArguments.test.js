@@ -26,6 +26,8 @@ describe('CLI should parse and use command line arguments and map them correctly
       '-it',
       '--security-opt',
       'no-new-privileges',
+      '-u',
+      'node',
       '--entrypoint',
       'bash',
       'node:1.0'
@@ -42,6 +44,8 @@ describe('CLI should parse and use command line arguments and map them correctly
       '-it',
       '--security-opt',
       'no-new-privileges',
+      '-u',
+      'node',
       '--entrypoint',
       'bash',
       'node:18-bullseye-slim'
@@ -59,6 +63,8 @@ describe('CLI should parse and use command line arguments and map them correctly
       '-it',
       '--security-opt',
       'no-new-privileges',
+      '-u',
+      'node',
       '--entrypoint',
       'bash',
       'node:16-bullseye-slim'
@@ -76,6 +82,8 @@ describe('CLI should parse and use command line arguments and map them correctly
       '-it',
       '--security-opt',
       'no-new-privileges',
+      '-u',
+      'node',
       '--entrypoint',
       'bash',
       'node:14-bullseye'
