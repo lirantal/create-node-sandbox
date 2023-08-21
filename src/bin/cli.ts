@@ -60,6 +60,19 @@ async function init() {
   }
 
   printWelcomeMessage()
+
+  if (sandboxOptions.help) {
+    console.log('Usage: create-node-sandbox [options]')
+    console.log('')
+    console.log('Options:')
+    console.log('  --image <image>      Docker image to use (default: node:18-bullseye-slim)')
+    console.log('  --node <node>        Node.js version to use (default: 18)')
+    console.log('  --resumable          Enable resumable mode (default: false)')
+    console.log('  --help               Show help')
+    console.log('\n')
+    process.exit(0)
+  }
+
   main({
     image: sandboxOptions.image,
     node: sandboxOptions.node,
@@ -70,7 +83,7 @@ async function init() {
 function parseCliArgs() {
   const cliArguments = parser(process.argv.slice(2), {
     string: ['image', 'node'],
-    boolean: ['resumable']
+    boolean: ['resumable', 'help']
   })
   return cliArguments
 }
