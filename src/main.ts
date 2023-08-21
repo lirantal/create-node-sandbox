@@ -25,6 +25,7 @@ export function main(sandboxOptions: { image: string; node: string; resumable: b
   !resumable ? dockerSpawnArguments.push('--rm') : null
   dockerSpawnArguments.push('-it')
   dockerSpawnArguments.push('--security-opt', 'no-new-privileges')
+  dockerSpawnArguments.push('-u', 'node')
   dockerSpawnArguments.push('--entrypoint', 'bash')
 
   if (!!node) {
