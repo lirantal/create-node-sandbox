@@ -36,6 +36,8 @@ describe('CLI should call spawn and execute the docker binary', () => {
       'no-new-privileges',
       '-u',
       'node',
+      '-w',
+      '/home/node',
       '--entrypoint',
       'bash',
       'node:18-bullseye-slim'

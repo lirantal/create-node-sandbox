@@ -26,6 +26,7 @@ export function main(sandboxOptions: { image: string; node: string; resumable: b
   dockerSpawnArguments.push('-it')
   dockerSpawnArguments.push('--security-opt', 'no-new-privileges')
   dockerSpawnArguments.push('-u', 'node')
+  dockerSpawnArguments.push('-w', '/home/node')
   dockerSpawnArguments.push('--entrypoint', 'bash')
 
   if (!!node) {
