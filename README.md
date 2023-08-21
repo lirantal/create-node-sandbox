@@ -8,6 +8,8 @@
 </p>
 
 <p align="center">
+  <img src="./.github/screenshot.png" />
+
   <a href="https://www.npmjs.org/package/create-node-sandbox"><img src="https://badgen.net/npm/v/create-node-sandbox" alt="npm version"/></a>
   <a href="https://www.npmjs.org/package/create-node-sandbox"><img src="https://badgen.net/npm/license/create-node-sandbox" alt="license"/></a>
   <a href="https://www.npmjs.org/package/create-node-sandbox"><img src="https://badgen.net/npm/dt/create-node-sandbox" alt="downloads"/></a>
