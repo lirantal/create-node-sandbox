@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import * as env from '../src/env'
-import { spawn } from 'node:child_process'
-import { EventEmitter } from 'node:events'
+import * as mainModule from '../src/main'
 
 // Mock the environment functions
 vi.mock('../src/env', () => ({
@@ -12,14 +11,20 @@ vi.mock('../src/env', () => ({
 
 // Mock child_process.spawn
 vi.mock('node:child_process', () => ({
+  default: {
+    spawn: vi.fn()
+  },
   spawn: vi.fn()
+}))
+
+// Mock the main function to prevent it from executing
+vi.mock('../src/main', () => ({
+  main: vi.fn()
 }))
 
 // Mock console methods
 const mockConsoleLog = vi.spyOn(console, 'log').mockImplementation(() => {})
-const mockProcessExit = vi.spyOn(process, 'exit').mockImplementation((code) => {
-  throw new Error(`process.exit(${code})`)
-})
+const mockProcessExit = vi.spyOn(process, 'exit').mockImplementation(() => {})
 
 describe('Docker image not available error handling', () => {
   beforeEach(() => {
@@ -42,13 +47,11 @@ describe('Docker image not available error handling', () => {
     // Import and execute the CLI initialization
     const { init } = await import('../src/bin/cli.ts')
 
-    // Act & Assert: Expect the process to exit with error
-    try {
-      await init()
-      expect.fail('Expected process.exit to be called')
-    } catch (error) {
-      expect(error.message).toBe('process.exit(1)')
-    }
+    // Act: Execute the init function
+    await init()
+
+    // Assert: Verify that process.exit was called with code 1
+    expect(mockProcessExit).toHaveBeenCalledWith(1)
 
     // Verify that the error message includes the docker pull command
     expect(mockConsoleLog).toHaveBeenCalledWith(
@@ -72,13 +75,11 @@ describe('Docker image not available error handling', () => {
       // Import and execute the CLI initialization
       const { init } = await import('../src/bin/cli.ts')
 
-      // Act & Assert: Expect the process to exit with error
-      try {
-        await init()
-        expect.fail('Expected process.exit to be called')
-      } catch (error) {
-        expect(error.message).toBe('process.exit(1)')
-      }
+      // Act: Execute the init function
+      await init()
+
+      // Assert: Verify that process.exit was called with code 1
+      expect(mockProcessExit).toHaveBeenCalledWith(1)
 
       // Verify that the error message includes the docker pull command for custom image
       expect(mockConsoleLog).toHaveBeenCalledWith(
