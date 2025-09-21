@@ -33,10 +33,30 @@ function printWelcomeMessage() {
   console.log('')
 }
 
-async function init() {
+function getNodeDockerImage(
+  nodeVersion: string | null = null,
+  nodeBaseImage: string | null = null
+): string {
+  const DEFAULT_NODE_VERSION = '18'
+  const DEFAULT_NODE_IMAGE_TAG = 'bullseye-slim'
+  return `node:${nodeVersion ? nodeVersion : DEFAULT_NODE_VERSION}-${
+    nodeBaseImage ? nodeBaseImage : DEFAULT_NODE_IMAGE_TAG
+  }`
+}
+
+export async function init() {
   const dockerExecutableName: string = 'docker'
 
   const sandboxOptions = parseCliArgs()
+
+  // Determine the image name that will be used
+  let imageToCheck = getNodeDockerImage()
+  if (sandboxOptions.node) {
+    imageToCheck = getNodeDockerImage(sandboxOptions.node)
+  }
+  if (sandboxOptions.image) {
+    imageToCheck = sandboxOptions.image
+  }
 
   try {
     await doesDockerExist(dockerExecutableName)
@@ -53,11 +73,12 @@ async function init() {
   }
 
   try {
-    await isDockerImageAvailable(dockerExecutableName, 'node:18-bullseye-slim')
+    await isDockerImageAvailable(dockerExecutableName, imageToCheck)
   } catch (error) {
     console.log(
-      'error: unable to find a local copy of the Node.js container image. Have you pulled it?'
+      `error: unable to find a local copy of the Node.js container image. Have you pulled it?`
     )
+    console.log(`Try running: docker pull ${imageToCheck}`)
     process.exit(1)
   }
 
