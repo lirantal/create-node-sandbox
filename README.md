@@ -13,7 +13,7 @@
   <a href="https://www.npmjs.org/package/create-node-sandbox"><img src="https://badgen.net/npm/v/create-node-sandbox" alt="npm version"/></a>
   <a href="https://www.npmjs.org/package/create-node-sandbox"><img src="https://badgen.net/npm/license/create-node-sandbox" alt="license"/></a>
   <a href="https://www.npmjs.org/package/create-node-sandbox"><img src="https://badgen.net/npm/dt/create-node-sandbox" alt="downloads"/></a>
-  <a href="https://github.com/lirantal/create-node-sandbox/actions?workflow=CI"><img src="https://github.com/lirantal/create-node-sandbox/workflows/CI/badge.svg" alt="build"/></a>
+  <a href="https://github.com/lirantal/create-node-sandbox/actions/workflows/main.yml"><img src="https://github.com/lirantal/create-node-sandbox/actions/workflows/main.yml/badge.svg?branch=main" alt="build"/></a>
   <a href="https://codecov.io/gh/lirantal/create-node-sandbox"><img src="https://badgen.net/codecov/c/github/lirantal/create-node-sandbox" alt="codecov"/></a>
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
 </p>
