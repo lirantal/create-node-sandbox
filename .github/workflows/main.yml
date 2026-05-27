@@ -47,7 +47,7 @@ jobs:
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
-      packages: write # to be able to publish to npm
+      packages: write # to be able to publish to GitHub Packages
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
