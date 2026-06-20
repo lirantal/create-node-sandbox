@@ -35,3 +35,7 @@ Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing 
 # Author
 
 **create-node-sandbox** © [Liran Tal](https://github.com/lirantal), Released under the [Apache-2.0](./LICENSE) License.
+
+## Documentation
+
+- [Project documentation](./docs/README.md) - development, testing, architecture, and conventions.
